@@ -1,5 +1,7 @@
-<div class="jumbotron jumbotron-fluid">
+
 <div class="container">
+<div class="well">
+<!--
   <%- model_class = Publication -%>
   <div class="page-header">
     <h1 class="display-4"><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
@@ -40,9 +42,27 @@
       <% end %>
     </tbody>
   </table>
+-->
+  
 
-  <%= link_to t('.new', :default => t("helpers.links.new")),
-              new_publication_path,
-              :class => 'btn btn-primary' %>
+  <% @publications.each do |publication| %>
+    <div class='media'>
+      <div class='media-left media-top'>
+        <%= image_tag publication.image, size: "300x200", class: 'media-object' %>
+      </div>
+      <div class='media-body'>
+        <h1 class='media-heading'><%= publication.description %></h1>
+        <p><font face='Arial' color='black'><%= publication.user %></fonte></p>
+        <p><font face='Arial' color='black'><%= publication.created_at %></fonte></p>
+        <!--<ul>
+          <li><h6>ingredientes</h6></li>
+        </ul>-->
+        <p><%= link_to t('.show', :default => t("helpers.links.Mais informações")),
+                          publication_path(publication), :class => 'btn btn-default btn-xs' %></p>
+              
+      </div>
+    </div>
+    <hr></br>
+  <% end %>
 </div>
 </div>

@@ -1,9 +1,24 @@
 <%- model_class = Publication -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
-</div>
 
-<dl class="dl-horizontal">
+  <div class="container">
+    <div class="well">
+        <center>
+            <h2><font face="Courier New" color="red" size = "60px"><%= @publication.description %></font></h2>    
+            <%= image_tag @publication.image, size: "500x350", class: 'img-rounded' %>       
+        </center>
+        </br>
+        </br>
+
+        <h2><font face="Courier New" color="red" >Postado por : </font><font face="Arial" color="black"><%= @publication.user %></font></h2>
+        <h2><font face="Courier New" color="red" >Data da postagem: </font><font face="Arial" color="black"><%= @publication.created_at %></h2>
+        <h2><font face="Courier New" color="red" >Preparo: </font><font face="Arial" color="black"><%= @publication.preparation %></font></h2>
+
+        
+        <ul>
+    </div>
+  </div>
+
+<!--<dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
   <dd><%= @publication.description %></dd>
   <dt><strong><%= model_class.human_attribute_name(:image) %>:</strong></dt>
@@ -13,7 +28,7 @@
   <dt><strong><%= model_class.human_attribute_name(:user) %>:</strong></dt>
   <dd><%= @publication.user %></dd>
   
-</dl>
+</dl>-->
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
               publications_path, :class => 'btn btn-default'  %>

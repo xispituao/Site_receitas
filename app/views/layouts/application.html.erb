@@ -60,9 +60,17 @@
         <%= link_to "Cozinha da Vivi", root_path, class: "navbar-brand"%>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
+          <!--
             <li><%= link_to "Lanches", "/path1"  %></li>
             <li><%= link_to "Doces e Sobremesas", "/path2"  %></li>
             <li><%= link_to "Bebidas", "/path3"  %></li>
+            -->
+            <%= form_tag(root_path, method: :get,class: "navbar-form navbar-left" ) do %>
+              <%= text_field_tag 'Pesquisar', nil, placeholder: 'Ex: Carnes, pão....', class: "form-control" %>
+              <%= submit_tag "Pesquisar", class: "btn btn-default" %>
+            <% end %>
+      
+            <!--
             <li><%= link_to "Massas", "/path3"  %></li>
             <li><%= link_to "Sopas", "/path3"  %></li>
             <li><%= link_to "Saladas e Molhos", "/path3"  %></li>
@@ -76,11 +84,15 @@
                 <li><a class="dropdown-item" href="#">Bolos e Tortas</a></li>
               </ul>
             </li>
+            -->
           </ul>
+
           <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
-          <li><span class="navbar-text">Bem vindo <%= current_user.email %></span></li>
-            <li><%= link_to "Deslogar" , destroy_user_session_path, method: :delete %></li>
+          <li><%= link_to t('.new', :default => t("helpers.links.Enviar nova receita")),
+              new_publication_path %></li>
+          <li><span class="navbar-text">Bem vindo <%= current_user.name %></span></li>
+            <li><%= link_to "Deslogar" , destroy_user_session_path, method: :delete , class: 'btn btn-danger'%></li>
           <% else %>
             <li><%= link_to "Cadastre-se" , new_user_registration_path %></li>
             <li><%= link_to "Login", new_user_session_path %>
@@ -90,13 +102,14 @@
       </div>
     </div>
 
-
+    
     <div class="container">
       <div class="row">
         <div class="col-lg-9">
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
+        <!--
         <div class="col-lg-3">
           <div class="well sidebar-nav">
             <h3>Sidebar</h3>
@@ -106,10 +119,11 @@
               <li><%= link_to "Link2", "/path2"  %></li>
               <li><%= link_to "Link3", "/path3"  %></li>
             </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
-      </div><!--/row-->
-
+          </div>
+        </div>
+        -->
+      </div>
+    
       <footer>
         <p>&copy; Company 2019</p>
       </footer>

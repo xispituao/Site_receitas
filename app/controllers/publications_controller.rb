@@ -1,10 +1,15 @@
 class PublicationsController < ApplicationController
   before_action :set_publication, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :show]
   # GET /publications
   # GET /publications.json
   def index
-    @publications = Publication.all
+    
+    if params["Pesquisar"]
+      @publications = Publication.search(params[:Pesquisar])
+    else
+      @publications = Publication.all 
+    end
   end
 
   # GET /publications/1
